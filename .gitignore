@@ -1,4 +1,5 @@
 .env*
 
 # キャッシュはpushしない
-/todo_api/api/__pycache__
+/todo_api/v1/api/__pycache__
+/todo_api/todo_api/__pycache__
