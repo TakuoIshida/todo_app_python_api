@@ -2,5 +2,4 @@
 
 # キャッシュはpushしない
 /todo_api/api/__pycache__
-/todo_api/api/migrations/__pycache__
 /todo_api/todo_api/__pycache__
