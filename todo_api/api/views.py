@@ -31,10 +31,10 @@ class TodoViewSet(APIView):
         # filterset = TodoListFilter(
         #     params, queryset=qs)
         serializer = TodoSerializer(instance=qs, many=True)
-        data = {
-            "todoList": serializer.data,
-        }
-        return response.Response(data, status=status.HTTP_200_OK)
+        # data = {
+        #     "todoList": serializer.data,
+        # }
+        return response.Response(serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request):
         print(request)
