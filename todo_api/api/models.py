@@ -6,6 +6,7 @@ class TodoModel(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    delete_flg = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.title
