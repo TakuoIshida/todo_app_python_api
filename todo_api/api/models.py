@@ -2,6 +2,7 @@ from django.db import models
 
 
 class TodoModel(models.Model):
+    todo_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50, null=False)
     content = models.TextField(max_length=400, null=False)
     isDeleted = models.BooleanField(default=False)
