@@ -38,9 +38,9 @@ class TodoViewSet(APIView):
 
     def put(self, request):
         print(request)
-        # todo_idの有無によって新規・更新を分ける
+        # todoIdの有無によって新規・更新を分ける
         param = request.data
-        # if param['todo_id'] == '' or param['todo_id'] == None:
+        # if param['todoId'] == '' or param['todoId'] == None:
         if True:
             # 新規作成
             serializer = TodoSerializer(data=param)
@@ -57,7 +57,7 @@ class TodoViewSet(APIView):
         else:
             # 更新
             try:
-                todo = TodoModel.objects.get(pk=param.get('todo_id'))
+                todo = TodoModel.objects.get(pk=param.get('todoId'))
             except Exception as e:
                 print(e)
                 return response.Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
