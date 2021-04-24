@@ -8,3 +8,10 @@ class TodoModel(models.Model):
     isDeleted = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+<<<<<<< HEAD
+=======
+    delete_flg = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return self.title
+>>>>>>> master
