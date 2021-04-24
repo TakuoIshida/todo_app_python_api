@@ -12,7 +12,7 @@ from .serializers import TodoSerializer
 class TodoListFilter(filters.Filter):
     title = filters.CharFilter(lookup_expr='icontains')
     content = filters.CharFilter(lookup_expr='icontains')
-    delete_flg = filters.BooleanFilter(lookup_expr=False)
+    isDeleted = filters.BooleanFilter(lookup_expr=False)
 
     class Meta:
         model = TodoModel
@@ -23,10 +23,14 @@ class TodoViewSet(APIView):
     queryset = TodoModel.objects.all()
     serializer_class = TodoSerializer
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         requestParams = request.query_params
+        filterset = TodoListFilter(
+            requestParams, queryset=TodoModel.objects.all())
+        serializer = TodoSerializer(instance=filterset)
+        ret = serializer.data
         data = {
-            "article": "this is test",
+            "ret": ret,
             "request": requestParams,
         }
         return response.Response(data, status=status.HTTP_200_OK)
