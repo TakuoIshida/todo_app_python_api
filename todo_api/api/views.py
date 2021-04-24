@@ -15,7 +15,7 @@ class TodoViewSet(APIView):
         requestParams = request.query_params
         data = {
             "article": "this is test",
-            # "request": requestParams,
+            "request": requestParams,
         }
         return response.Response(data, status=status.HTTP_200_OK)
 
