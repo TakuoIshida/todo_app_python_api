@@ -41,11 +41,10 @@ class TodoViewSet(APIView):
     def put(self, request):
         print(request)
         # todo_idの有無によって新規・更新を分ける
-        # if param['todo_id'] == '' or param['todo_id'] == None:
-        if True:
+        param = request.data
+        if param['todo_id'] == '' or param['todo_id'] == None:
             # 新規作成
-            serializer = TodoSerializer(data=request.data)
-            # serializer = TodoSerializer(data=param)
+            serializer = TodoSerializer(data=param)
             try:
                 serializer.is_valid(raise_exception=True)
                 serializer.save()
@@ -58,7 +57,6 @@ class TodoViewSet(APIView):
             return response.Response(data, status=status.HTTP_200_OK)
         else:
             # 更新
-            # todo = TodoModel.objects.get(pk=param['todo_id'])
             try:
                 todo = TodoModel.objects.get(pk=param.get('todo_id'))
             except Exception as e:
