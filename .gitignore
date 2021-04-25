@@ -3,3 +3,6 @@
 # キャッシュはpushしない
 /todo_api/api/__pycache__
 /todo_api/todo_api/__pycache__
+
+#db
+/todo_api/db.sqlite3
