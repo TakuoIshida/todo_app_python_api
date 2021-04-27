@@ -31,17 +31,18 @@ class TodoViewSet(APIView):
         # filterset = TodoListFilter(
         #     params, queryset=qs)
         serializer = TodoSerializer(instance=qs, many=True)
-        # data = {
-        #     "todoList": serializer.data,
-        # }
-        return response.Response(serializer.data, status=status.HTTP_200_OK)
+        data = {
+            "status": status.HTTP_200_OK,
+            "message": "",
+            "result": serializer.data,
+        }
+        return response.Response(data, status=status.HTTP_200_OK)
 
     def put(self, request):
-        print(request)
         # idの有無によって新規・更新を分ける
         param = request.data
-        # if param['id'] == '' or param['id'] == None:
-        if True:
+        if param['id'] == '' or param['id'] == None:
+            # if True:
             # 新規作成
             serializer = TodoSerializer(data=param)
             try:
@@ -51,7 +52,9 @@ class TodoViewSet(APIView):
                 print(e)
                 return response.Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             data = {
-                "newSavedData": serializer.data
+                "status": status.HTTP_200_OK,
+                "message": "",
+                "result": serializer.data,
             }
             return response.Response(data, status=status.HTTP_200_OK)
         else:
@@ -70,7 +73,8 @@ class TodoViewSet(APIView):
                 print(e)
                 return response.Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             data = {
-                "savedData": serializer.data
+                "status": status.HTTP_200_OK,
+                "message": "",
+                "result": serializer.data,
             }
         return response.Response(data, status=status.HTTP_200_OK)
-        # return response.Response(status=status.HTTP_200_OK)
