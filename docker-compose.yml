@@ -1,0 +1,13 @@
+version: "3"
+services:
+  todo_api:
+    build: .
+    container_name: "todo_api"
+    working_dir: "/usr/src/app/todo_api"
+    command: python manage.py runserver 0.0.0.0:8000 --insecure
+    tty: true
+    volumes:
+      - ./:/usr/src/app
+    restart: always
+    ports:
+      - 8000:8000

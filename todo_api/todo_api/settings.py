@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-p0hp=6qc##9h2krkk*4w+lu9aif++5du080)=maw5iu)b*q6mv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# TODO: .env に ALLOWED_HOSTS を設定する
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static'
             ],
         },
     },
@@ -127,9 +129,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+# TODO: 環境変数にstaticまでの絶対パスを定義
+# STATIC_ROOT = "/static/"
 STATIC_URL = '/static/'
 
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static")
+# ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
