@@ -9,6 +9,7 @@ djangorestframework = "*"
 django-filter = "*"
 django-cors-headers = "*"
 uwsgi = "*"
+django-environ = "*"
 
 [dev-packages]
 

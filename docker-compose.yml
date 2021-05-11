@@ -6,8 +6,15 @@ services:
     working_dir: "/usr/src/app/todo_api"
     command: python manage.py runserver 0.0.0.0:8000 --insecure
     tty: true
+    # Fagate は保存する場所はないので、volumesは使用不可
     volumes:
       - ./:/usr/src/app
     restart: always
     ports:
       - 8000:8000
+    # logging:
+    #   driver: awslogs
+    #   options:
+    #     awslogs-group: python-docker
+    #     awslogs-region: ap-northeast-1
+    #     awslogs-stream-prefix: db-service

@@ -10,25 +10,26 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# TODO: envから読み込み
-SECRET_KEY = 'django-insecure-p0hp=6qc##9h2krkk*4w+lu9aif++5du080)=maw5iu)b*q6mv'
+SECRET_KEY = env.get_value("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.get_value("DEBUG")
 
-# TODO: .env に ALLOWED_HOSTS を設定する
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 # Application definition
 
@@ -45,10 +46,8 @@ INSTALLED_APPS = [
     'api'
 ]
 
-# TODO: 環境変数はenvから読み込み
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-]
+# CORS_ORIGIN_WHITELIST = env.get_value("CORS_ORIGIN_WHITELIST")
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -87,10 +86,7 @@ WSGI_APPLICATION = 'todo_api.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db("DATABASE_URL", default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3'))
 }
 
 
@@ -129,8 +125,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-# TODO: 環境変数にstaticまでの絶対パスを定義
-# STATIC_ROOT = "/static/"
+STATIC_ROOT = env.get_value("STATIC_ROOT")
 STATIC_URL = '/static/'
 
 # STATICFILES_DIRS = [
