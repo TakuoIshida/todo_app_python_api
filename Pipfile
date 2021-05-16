@@ -10,6 +10,7 @@ django-filter = "*"
 django-cors-headers = "*"
 uwsgi = "*"
 django-environ = "*"
+gunicorn = "*"
 
 [dev-packages]
 

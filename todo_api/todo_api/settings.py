@@ -46,8 +46,7 @@ INSTALLED_APPS = [
     'api'
 ]
 
-# CORS_ORIGIN_WHITELIST = env.get_value("CORS_ORIGIN_WHITELIST")
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+CORS_ORIGIN_WHITELIST = env.list("CORS_ORIGIN_WHITELIST")
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
